@@ -1,5 +1,5 @@
 function renderVideo(data) {
-  // console.log(data);
+
   const loadingElements = document.querySelectorAll(".londingcctv");
   loadingElements.forEach((element) => {
     element.style.display = "none";
@@ -8,7 +8,7 @@ function renderVideo(data) {
   var players = [];
 
   for (var i = 0; i < data.length; i++) {
-    const uuid = data[i].lastTelemetry.uuid;
+    // const uuid = data[i].lastTelemetry.uuid;
 
     var divElement = document.createElement("div");
     divElement.className = "video-container";
@@ -29,10 +29,11 @@ function renderVideo(data) {
 
     var sourceElement = document.createElement("source");
     sourceElement.type = "application/x-mpegURL";
-    sourceElement.src =
-      `https://streaming.planetcloud.cloud/streaming/${city}/stream/` +
-      uuid +
-      "/channel/0/hls/live/index.m3u8";
+    sourceElement.src = data[i].rtsp
+    // sourceElement.src =
+    //   `https://streaming.planetcloud.cloud/streaming/${city}/stream/` +
+    //   uuid +
+    //   "/channel/0/hls/live/index.m3u8";
 
     videoElement.appendChild(sourceElement);
     divElement.appendChild(videoElement);
@@ -55,6 +56,8 @@ function ShowAlert(data) {
 
   var audio = new Audio('./assets/file/beep_sound.mp3');
   var playPromise = audio.play();
+
+  playPromise;
 
   var alertImgContainer = document.querySelector(".alertimg");
   var newAlert = document.createElement("div");
@@ -217,11 +220,10 @@ async function initialize() {
     // ShowAlert();
     connectSocket();
 
-    await getStreaming();
-    const data = await getStreaming();
-    const filterCamera4 = data.filter((d) => d.pointId == 7);
-
-    renderVideo(filterCamera4);
+    // const data = await getStreaming();
+    // const filterCamera4 = data.filter((d) => d.pointId == 7);
+    const evtStreaming = await getStreaming();
+    renderVideo(evtStreaming);
 
     const evtdata = await getEvent();
     renderEvt(evtdata);

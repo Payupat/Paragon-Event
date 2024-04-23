@@ -1,8 +1,9 @@
 const city = "planetcomm";
 
 const api = {
-  streaming: `https://city.planetcloud.cloud/dm/planetcomm/camera/list`,
+  // streaming: `https://city.planetcloud.cloud/dm/planetcomm/camera/list`,
   event: `http://192.168.100.87:8000/alert/event`,
+  streaming:`http://192.168.100.87:8000/alert/cctv`
 };
 
 async function getStreaming() {

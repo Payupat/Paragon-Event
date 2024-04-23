@@ -14,6 +14,7 @@ var imgURL = params.get("imgurl") + "&withcontenttype=true&mode=archive&starttim
 
 var imgViewer = document.getElementById("imgViewer");
 const topic = params.get("topic");
+document.getElementById("dashboard").innerHTML = topic;
 if(topic !== "อาวุธปืน"){
     imgViewer.style.height = "600px"
     imgViewer.style.width = "35%"

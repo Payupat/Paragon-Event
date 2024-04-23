@@ -83,7 +83,7 @@ function InitDailyTable(eventData) {
 }
 
 function ShowAlert(data) {
-  console.log(data);
+  // console.log(data);
 
   var audio = new Audio("./assets/file/beep_sound.mp3");
   var playPromise = audio.play();
@@ -192,6 +192,7 @@ function connectSocket() {
   };
 }
 
+
 async function initialize() {
   try {
     
@@ -199,6 +200,10 @@ async function initialize() {
     InitDailyTable(evtdata);
 
     connectSocket();
+
+    setInterval(function() {
+      console.log(tableDaily.data());
+  }, 30000);
   } catch (error) {}
 }
 window.addEventListener("load", initialize);

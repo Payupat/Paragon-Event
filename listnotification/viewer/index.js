@@ -11,6 +11,18 @@ var imgURL = params.get("imgurl") + "&withcontenttype=true&mode=archive&starttim
 // console.log(img);
 // let imgs = 'https://iot.planetcloud.cloud/analytics/baanmai/site?channelid=e535bd53-3078-4eb9-88a2-c8211fda4133&withcontenttype=true&mode=archive&starttime=17.10.2023%16:31:58&resolutionx=2048&resolutiony=1536&streamtype=mainvideo&login=root&password=daab6cec109d8ccf65c965d67d51225f';
 // console.log(imgs);
+
+var imgViewer = document.getElementById("imgViewer");
+const topic = params.get("topic");
+if(topic !== "อาวุธปืน"){
+    imgViewer.style.height = "600px"
+    imgViewer.style.width = "35%"
+}else{
+    imgViewer.style.width = "50%"
+}
+
 document.getElementById("imgViewer").src = params.get("imgurl");
+
+
 
 

@@ -1,9 +1,11 @@
+var tableDaily;
+
 function convertISOToDateTime(isoDateTime) {
   let dateTimeString = isoDateTime.replace("T", " ").replace("Z", "");
 
   let dateTime = new Date(dateTimeString);
   let year = dateTime.getFullYear();
-  let month = ("0" + (dateTime.getMonth() + 1)).slice(-2); 
+  let month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
   let day = ("0" + dateTime.getDate()).slice(-2);
   let hours = ("0" + dateTime.getHours()).slice(-2);
   let minutes = ("0" + dateTime.getMinutes()).slice(-2);
@@ -14,7 +16,6 @@ function convertISOToDateTime(isoDateTime) {
 
 function InitDailyTable(eventData) {
   var dataOnTable = [];
-  // console.log(eventData);
   for (var i = 0; i < eventData.length; i++) {
     dataOnTable.push([
       convertISOToDateTime(eventData[i].timestamp),
@@ -24,13 +25,13 @@ function InitDailyTable(eventData) {
       eventData[i].description?.name || "",
       "<a target='_blank' href='./viewer/?imgurl=" +
         eventData[i].image.thumbnail +
-        "'><img src='" +
+        "&topic="+eventData[i].event_type.name_th+"'><img src='" +
         eventData[i].image.thumbnail +
         "' width=80 height=80 /></a>",
       eventData[i].image.image_compare !== null
         ? "<a target='_blank' href='./viewer/?imgurl=" +
           eventData[i].image.image_compare +
-          "'><img src='" +
+          "&topic="+eventData[i].event_type.name_th+"'><img src='" +
           eventData[i].image.image_compare +
           "' width=80 height=80 /></a>"
         : "",
@@ -49,6 +50,11 @@ function InitDailyTable(eventData) {
     language: {
       emptyTable: "ไม่มีข้อมูล",
     },
+    buttons: [
+        {
+            extend: "excel",
+        },
+    ],
   });
 
   var dt_search_0 = document.getElementById("dt-search-0");
@@ -70,7 +76,7 @@ function InitDailyTable(eventData) {
     element.style.color = "#35C8EE";
   });
   var dt_info = document.querySelector(".dt-info");
-  dt_info.classList.add("mt-3")
+  dt_info.classList.add("mt-3");
 
   dt_search.style.color = "#35C8EE";
   dt_info.style.color = "#35C8EE";
@@ -79,7 +85,7 @@ function InitDailyTable(eventData) {
 function ShowAlert(data) {
   console.log(data);
 
-  var audio = new Audio('./assets/file/beep_sound.mp3');
+  var audio = new Audio("./assets/file/beep_sound.mp3");
   var playPromise = audio.play();
 
   var newAlert = document.createElement("div");
@@ -156,9 +162,7 @@ function ShowAlert(data) {
 }
 
 function renderEvtSocket(data) {
-  console.log(data);
-  ShowAlert(data)
-
+  ShowAlert(data);
   data.timestamp = convertISOToDateTime(data.timestamp);
 
   let newRowData = [
@@ -167,13 +171,14 @@ function renderEvtSocket(data) {
     data.location || "",
     data.event?.name_th || "",
     data.description?.name || "",
-    `<a target='_blank' href='./viewer/?imgurl=${data.thumbnail}'><img src='${data.thumbnail}' width=80 height=80 /></a>`,
-    data.image_compare !== null ? `<a target='_blank' href='./viewer/?imgurl=${data.image_compare}'><img src='${data.image_compare}' width=80 height=80 /></a>` : "",
-    data.accuracy !== null ? `${data.accuracy} %` : "0 %"
+    `<a target='_blank' href='./viewer/?imgurl=${data.thumbnail}&topic=${data.event.name_th}'><img src='${data.thumbnail}' width=80 height=80 /></a>`,
+    data.image_compare !== null
+      ? `<a target='_blank' href='./viewer/?imgurl=${data.image_compare}&topic=${data.event.name_th}'><img src='${data.image_compare}' width=80 height=80 /></a>`
+      : "",
+    data.accuracy !== null ? `${data.accuracy} %` : "0 %",
   ];
 
   tableDaily.row.add(newRowData).draw();
-
 }
 
 function connectSocket() {
@@ -189,9 +194,11 @@ function connectSocket() {
 
 async function initialize() {
   try {
-    connectSocket();
+    
     const evtdata = await getEvent();
     InitDailyTable(evtdata);
+
+    connectSocket();
   } catch (error) {}
 }
 window.addEventListener("load", initialize);

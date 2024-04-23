@@ -52,8 +52,6 @@ function renderVideo(data) {
 }
 
 function ShowAlert(data) {
-  console.log(data);
-
   var audio = new Audio('./assets/file/beep_sound.mp3');
   var playPromise = audio.play();
 
@@ -170,7 +168,7 @@ function renderEvt(data) {
             <div class="flex justify-center">
               <a target='_blank' href='./viewer/?imgurl=${
                 reversedData[i].image.thumbnail
-              }'>
+              }&topic=${reversedData[i].event_type.name_th}'>
                 <img src="${reversedData[i].image.thumbnail}" class="w-16" />
               </a>
             </div>
@@ -202,7 +200,7 @@ function renderEvtSocket(data) {
   cell5.innerHTML = data.description?.name || "";
   cell6.innerHTML = `
     <div class="flex justify-center">
-      <a target='_blank' href='./viewer/?imgurl=${data.thumbnail}'>
+      <a target='_blank' href='./viewer/?imgurl=${data.thumbnail}&topic=${data.event.name_th}'>
         <img src="${data.thumbnail}" class="w-16" />
       </a>
     </div>`;

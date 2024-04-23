@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./style/main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SIAM PARAGON</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600&display=swap"
+            rel="stylesheet">
+        <link href="https://vjs.zencdn.net/8.5.2/video-js.css"
+            rel="stylesheet" />
+        <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+        <script src="https://cdn.tailwindcss.com?line-clamp"></script>
+    </head>
+    <body>
+        <div class="absolute top-0 inset-x-0">
+            <div class="relative w-full">
+                <div>
+                    <img
+                        src="./assets/image/header.png"
+                        class="w-full h-[90px] xl:h-[106px]" />
+                </div>
+
+                <div
+                    class="p-10 text-center absolute top-[45%] left-1/2 -translate-x-1/2  -translate-y-1/2 text-white select-none">
+                    <div class="text-[24px] xl:text-[30px]">Dashboard</div>
+                    <div
+                        class="context_center_date text-[16px] xl:text-[18px]">--
+                        : -- : -- :--</div>
+                </div>
+
+                <div
+                    class="flex justify-between items-center absolute top-[10px] xl:top-[9px] inset-x-5">
+                    <div class="flex items-center gap-6">
+                        <!-- <img src="./assets/images/icon/icon-menu.svg"
+                        class="cursor-pointer" /> -->
+                    </div>
+
+                    <div class="flex items-center gap-6">
+
+                        <!-- <a href="../logout/">
+                        <img src="./assets/icon/icon-logout.svg"
+                            class="cursor-pointer imgicon" />
+                    </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- blur -->
+        <div class="blur hidden h-full w-full z-40 fixed top-0 left-0 bg-[#000000b3]"></div>
+
+        <!-- <div class="popupalert1 transform scale-100 transition-transform duration-500 ease-in-out  border border-[#F44336] rounded  w-[40%] z-50 absolute top-[28%] right-[8%] bg-[#102A43] p-2 pl-4 text-white">
+            <div >
+                <p id="topicname" class="text-[#35C8EE] pb-1 text-xl font-light">ตรวจพบการลื่นล้ม</p>
+                <div class="flex ">
+                    <img src="./assets/image/slip.jpg" alt="" class="w-[250px]">
+                    <img src="./assets/image/fight.jpeg" alt="" class="w-[250px] mx-2">
+                </div>
+                <div class="text-lg">
+                    <div class="py-1 flex  ">
+                        <div class="w-1/2">
+                            <p class="text-[#35C8EE] py-1">เวลา</p>
+                            <p>
+                                ประตูทางเข้าชั้น G
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-[#35C8EE] py-1">ชื่อ-นามสกุล</p>
+                            <p>CCTV 001</p>
+                        </div>
+                    </div>     
+                    <div class="flex  ">
+                        <div class="w-1/2">
+                            <p class="text-[#35C8EE] py-1">สถานที่</p>
+                            <p>
+                                ประตูทางเข้าชั้น G
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-[#35C8EE] py-1">กล้อง</p>
+                            <p>CCTV 001</p>
+                        </div>
+                    </div>          
+                </div>
+                <div class="confirm select-none cursor-pointer text-[#102A43] hover:bg-[#0ea3ca] bg-[#35C8EE] p-3 my-2 rounded w-32 text-center">
+                    รับทราบ
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <script>
+            setTimeout(function() {
+                var alertImgContainer = document.querySelector(".alertimg");
+                var newAlert = document.createElement("div");
+                var newimg = document.createElement("div");
+                const overlay = document.querySelector(".blur"); 
+                
+                overlay.style.display = "block"
+
+
+                newimg.className = "alertevt1 absolute text-[#35C8EE] bottom-[8%] left-[20%]"
+                newimg.innerHTML = `<img src="./assets/image/alert-dorbox.gif" alt="" class="max-w-[80px]">`
+                
+
+                newAlert.className = "popupalert2 border border-[#F44336] rounded w-[40%] z-50 absolute top-[28%] right-[8%] bg-[#102A43] p-2 pl-4 text-white";
+            
+                newAlert.innerHTML = `
+                    <div>
+                        <p id="topicname" class="text-[#35C8EE] pb-1 text-xl font-light">ตรวจพบการต่อสู้</p>
+                        <div>
+                            <img src="./assets/image/fight.jpeg" alt="" class="w-[250px]">
+                        </div>
+                        <div class="text-lg">
+                            <p class="text-[#35C8EE] py-1">เวลา</p>
+                            <p class="py-1">03/08/2567 06:01:00</p>
+                            <div class="flex w-1/2 justify-between ">
+                                <div>
+                                    <p class="text-[#35C8EE] py-1">สถานที่</p>
+                                    <p>ประตูทางเข้าชั้น SBVFDFSDFDS</p>
+                                </div>
+                                <div>
+                                    <p class="text-[#35C8EE] py-1">กล้อง</p>
+                                    <p>CCTV 001</p>
+                                </div>
+                            </div>          
+                        </div>
+                        <div class="confirm1 select-none cursor-pointer text-[#102A43] hover:bg-[#0ea3ca] bg-[#35C8EE] p-3 my-2 rounded w-32 text-center">
+                            รับทราบ
+                        </div>
+                    </div>
+                `;
+                
+                
+                alertImgContainer.appendChild(newimg);
+                document.body.appendChild(newAlert);
+                document.body.appendChild(overlay);
+
+                var confirmButton = newAlert.querySelector(".confirm1");
+                
+                confirmButton.addEventListener("click", function() {
+                    newAlert.remove();
+                    newimg.style.display = "none";
+                    
+                    var remainingAlerts = document.querySelectorAll("[class^='popupalert']");
+                    if (remainingAlerts.length === 0) {
+                        overlay.style.display = "none";
+                    }
+                });
+            }, 5000);
+
+        </script> -->
+
+        
+
+        <div class="pt-[90px] xl:pt-[106px]">
+            <div class="mt-2 mx-5 h-[86dvh] grid grid-cols-9 gap-4">
+                <div class="alertimg col-span-4 h-[97%] z-50 relative">
+                    <img src="./assets/image/floorplan.png"
+                        class="h-full w-full rounded">
+                    <!-- <div class="alertevt absolute text-[#35C8EE] bottom-[8%] left-[20%]">
+                        <img src="./assets/image/alert-slip.gif" alt="" class="max-w-[80px]">
+                    </div> -->
+                    <!-- <div class="alertevt absolute text-[#35C8EE] bottom-[8%] left-[20%]">
+                        <img src="./assets/image/alert-dorbox.gif" alt="" class="max-w-[80px]">
+                    </div> -->
+                </div>
+
+                <!-- <script>
+                    const confirmButton = document.querySelector(".confirm");
+                    const dialog = document.querySelector(".popupalert1"); 
+                    const overlay = document.querySelector(".blur"); 
+                    const alertImage = document.querySelector(".alertevt");
+                
+                    confirmButton.addEventListener("click", function() {
+                        dialog.remove(); 
+                        overlay.style.display = "none"; 
+                        alertImage.remove();
+                    });
+                </script> -->
+
+                <div
+                    class="col-span-5 rounded h-[97%] flex flex-col justify-between">
+                    <div
+                        class="px-6 py-2 bg-[#102A43] opacity-90 border border-[#35C8EE] rounded h-[59%]">
+                        <span class="text-[#35C8EE]">กล้องวงจรปิด (CCTV
+                            Streaming)</span>
+                        <div
+                            class="mt-2 px-2 mx-auto  w-[80%] overflow-auto grid grid-cols-2 gap-2 items-center justify-center"
+                            id="video">
+
+                        </div>
+                    </div>
+                    <div
+                        class="py-2 bg-[#102A43] opacity-90 border border-[#35C8EE] rounded h-[40%]">
+                        <div class="pl-6 pr-1 flex justify-between">
+                            <span class="text-[#35C8EE]">รายการแจ้งเตือน</span>
+                            <a href="../listnotification/">
+                                <img class="cursor-pointer"
+                                    src="./assets/image/zoom.png"
+                                    width="23">
+                            </a>
+                        </div>
+                        <div class="overflow-auto max-h-[29vh] pt-5">
+                            <table id="create_table"
+                                class="w-full border-collapse">
+                                <thead
+                                    style="background-color: #203148;">
+                                    <tr class="text-[#35C8EE] select-none">
+                                        <th class="font-normal py-2">เวลา</th>
+                                        <th class="font-normal py-2">กล้อง</th>
+                                        <th class="font-normal py-2">สถานที่</th>
+                                        <th class="font-normal py-2">ประเภท</th>
+                                        <th class="font-normal py-2">ชื่อ-นามสกุล</th>
+                                        <th class="font-normal py-2">รูป</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_fr" class="text-white">
+                                    <!-- <tr class="text-center">
+                                        <td class="py-7">Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td class="py-7">Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td class="py-7">Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td class="py-7">Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                    </tr> -->
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./widget/datetime.js"></script>
+        <script src="./api.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>

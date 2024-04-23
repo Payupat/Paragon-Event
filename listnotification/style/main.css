@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../assets/image/bg.png");
+  width: 100%;
+  font-family: "Kanit", sans-serif;
+  /* overflow: hidden; */
+}
+
+tbody tr:nth-child(even) {
+  background-color: #131731;
+}
+

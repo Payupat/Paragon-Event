@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="./image/favicon.png">
+        <link rel="stylesheet" href="./style/style_wrong_camera.css">
+        <link rel="stylesheet" href="./style/table.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <!-- Bootstrap 4 -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+            crossorigin="anonymous">
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+            crossorigin="anonymous"></script>
+
+        <!-- Datatable 4 -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+        <link rel="stylesheet"
+            href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script
+            src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script
+            src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
+        <script
+            src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+        <script
+            src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap4.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script
+            src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+        <script
+            src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+        <script
+            src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.colVis.min.js"></script>
+        <title>City Operation Center</title>
+
+    </head>
+    <style>
+    .flex-wrap {
+        margin-bottom: -45px;
+        border-color: #00D1E3;
+        
+    }
+        
+    div.dataTables_wrapper div.dataTables_paginate {
+        margin-top: -25px;
+    }
+
+    div.dt-buttons {
+    font-family: 'Kanit', sans-serif;
+    }
+        
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: #00D1E3;
+        border-color: #00D1E3;
+    }
+ </style>
+    <body>
+        <div class="container_header">
+            <div class="image_head">
+                <img src="./image/head_1.png" style="width: 100%;"
+                    height="106px">
+                <div class="menu-left">
+                    <!-- <input type="image" src="./image/icon/menu.svg" width="40" height="40"/> -->
+                    <!-- <div>
+                        <a href="../../summary/"><img
+                                src="./image/icon/home.svg"></a>
+                    </div> -->
+                    <!-- <div style="margin-left: 20px;">
+                    <a href="../"><img src="./image/icon/left 2.png" height="40"></a>
+                </div> -->
+                </div>
+            </div>
+            <div class="context_center">
+                <div class="context_center_sum">การตรวจจับใบหน้า</div>
+                <div class="context_center_date">-- : -- : -- : --</div>
+            </div>
+            <div class="flex_icon_header">
+                <div class="notifi-right">
+                    <!-- <input type="image" src="./image/icon/notification1.svg" style="margin-top: 2px;" width="38" height="35"/> -->
+                    <!-- <div style="margin-left: 20px;">
+                        <a href="../../logout/"><img
+                                src="./image/icon/account5.svg" /></a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 50px; position: relative;">
+            <!-- <div class="londing" style="position: absolute; height: 78vh; width: 100%; display: flex; justify-content: center;">
+                <div class="lds-dual-ring m-auto"></div>
+            </div> -->
+            <center>
+                <img id="imgViewer" src="" width="35%">
+            </center>
+        </div>
+
+        <script src="./datetime.js"></script>
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArJTiZmhV64xAL9iHpeQp-uzGgVmwuC-8&libraries=places"></script>
+
+        <script src="./index.js"></script>
+
+    </body>
+</html>

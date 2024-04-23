@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100&display=swap');
+
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url('../image/bg.png');
+    width: 100%;
+    font-family: 'Kanit', sans-serif;
+}
+
+.addPlateForm {
+    height: 50px;
+    width: 150px;
+}
+
+.container_header{
+    position: relative;
+    width: 100%;
+}
+
+.context_center{
+    padding: 10px;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Kanit', sans-serif;
+}
+
+.context_center_sum{
+    font-size: 30px;
+}
+
+.context_center_date{
+    font-size: 18px;
+
+}
+.menu-left {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: flex;
+}
+.notifi-right{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+}
+
+.outoff-1{
+    position: absolute;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+    color: #FFF;
+    right: 220px;
+    margin-top:140px;
+    top: 1px;
+    font-size: 20px;
+    
+}
+
+.outoff-2{
+    position: absolute;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+    color: #FFF;
+    right: 50px;
+    margin-top:140px;
+    top: 1px;
+    font-size: 20px;
+    
+}
+
+.outoff-3{
+    position: absolute;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+    color: #FFF;
+    right: 50px;
+    margin-top:65px;
+    top: 1px;
+    font-size: 20px;
+    
+}
+
+.input_contact[type=text] {
+    /* margin: 4px 0px 0px 0px; */
+    margin: 45px 30px;
+    width: 15%;
+    padding: 10px;
+    border: 1px solid #B1B1B1;
+    border-radius: 5px;
+    resize: vertical;
+    z-index: 1;
+    position: absolute;
+    
+}
+
+.table_customer{
+    height: 650px;
+    padding-top: 0px;
+    overflow: auto;
+    border: 1px solid #00D1E3;
+}
+
+.table_customer table{
+    width: 100%;
+    table-layout: fixed;
+    
+    min-width: 700px;
+}
+
+.table_customer table thead th{
+    position: sticky;
+    top: 0;
+    background-color: #051B33;
+    font-size: 16px;
+
+}
+
+.table_customer table thead th,td{
+    text-align: center;
+    padding: 10px 20px;
+    word-break: break-all;
+}
+
+/* .table_customer table tr{
+    border-left: 1px solid #051B33;
+    border-right: 1px solid #051B33;
+} */
+
+
+/* จำกัด Rows */
+/* .table_customer table tr:nth-child(n+7){
+    visibility: hidden;
+} */
+
+.tr_color:nth-child(even){
+    background-color: #051B33;
+}
+
+.tr_style{
+    font-size: 16px;
+    font-weight: 400;
+    color: #00D1E3;
+    background-color: #FFFFFF1A;
+}
+
+.tr_color:nth-child(even){
+    background-color: #FFFFFF1A;
+
+}
+
+.button_lo{
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 100%;
+    cursor: pointer;
+    padding: 6px 12px;
+    
+}
+
+.button_lo:nth-child(1):hover{
+    background-color: white;
+    color: #00D1E3;
+}
+
+.td_img1 img{
+    width: 80px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+.td_img1:hover {
+    cursor:pointer;
+}
+
+.td_img2 img{
+    width: 100px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+.td_img2 div{
+    z-index:100;
+    position:absolute;
+    color:black;
+    margin-left: 40px;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+.td_img2:hover {
+    cursor:pointer;
+}
+
+.btn_click{
+    color: #00D1E3;
+    border: 2px solid #00D1E3;
+    border-radius: 20px;
+    width: 90px;
+    height: 30px;
+    background: #071E37;
+    margin-top: 18px;
+}
+
+.btn_click:hover {
+    transform: translateX(2px);
+    /* box-shadow: 5px 0px 10px 5px #00D1E3; */
+    box-shadow: #00D1E3 6px 2px 16px 0px, #00D1E3 -6px -2px 16px 0px;
+
+}
+
+.btn_click:active {
+    transform: translateY(-1px);
+    box-shadow: #00D1E3 6px 2px 16px 0px, #00D1E3 -6px -2px 16px 0px;
+}
+
+.btn_confirm{
+    margin-top: 18px;
+    width: 90px;
+    height: 30px;
+    border-radius: 20px;
+    background: #00D1E3;
+    border: #00D1E3;
+    color: #114171;
+}
+
+.btn_confirm:hover{
+    transform: translateX(2px);
+}
+
+.btn_confirm:active{
+    background: none;
+    color: greenyellow;
+}
+

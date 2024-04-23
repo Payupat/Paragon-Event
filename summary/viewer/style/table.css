@@ -1,0 +1,21 @@
+.table-footer {
+    position: relative;
+    bottom: 20px;
+    width: 100%;
+    background-color: aqua;
+}
+
+
+.table-panigation {
+    display: flex;
+    width: 100%;
+}
+
+.table-footer-detail {
+    float: left;
+
+}
+
+.table-footer-control {
+    margin-left: 50%;
+}

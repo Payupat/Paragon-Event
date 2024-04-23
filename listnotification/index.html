@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./style/main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SIAM PARAGON</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600&display=swap"
+            rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com?line-clamp"></script>
+    </head>
+    <body>
+        <div class="absolute top-0 inset-x-0">
+            <div class="relative w-full">
+                <div>
+                    <img
+                        src="./assets/image/header.png"
+                        class="w-full h-[90px] xl:h-[106px]" />
+                </div>
+
+                <div
+                    class="p-10 text-center absolute top-[45%] left-1/2 -translate-x-1/2  -translate-y-1/2 text-white select-none">
+                    <div class="text-[24px] xl:text-[30px]">Dashboard</div>
+                    <div
+                        class="context_center_date text-[16px] xl:text-[18px]">--
+                        : -- : -- :--</div>
+                </div>
+
+                <div
+                    class="flex justify-between items-center absolute top-[10px] xl:top-[9px] inset-x-5">
+                    <div class="flex items-center gap-6">
+                        <a href="../summary/">
+                            <img src="./assets/icon/home.svg"
+                            class="cursor-pointer" />
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6">
+
+                        <!-- <a href="../logout/">
+                        <img src="./assets/icon/icon-logout.svg"
+                            class="cursor-pointer imgicon" />
+                    </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-[90px] xl:pt-[106px]">
+            <div class="mt-2 mx-5 h-[86dvh] grid grid-cols-1 gap-4">
+                <div
+                    class="rounded h-[100%] flex flex-col justify-between">
+                    <div
+                        class="py-2 bg-[#102A43] opacity-90 border border-[#35C8EE] rounded h-[100%]">
+                        <div class="pl-6 pr-1 flex justify-between">
+                            <span class="text-[#35C8EE]">รายการแจ้งเตือน</span>
+                        </div>
+                        <div class="overflow-auto max-h-[30vh] pt-5">
+                            <table id="create_table"
+                                class="w-full border-collapse">
+                                <thead
+                                    style="background-color: #203148;">
+                                    <tr class="text-[#35C8EE]">
+                                        <th class="font-normal py-2">เวลา</th>
+                                        <th class="font-normal py-2">กล้อง</th>
+                                        <th class="font-normal py-2">สถานที่</th>
+                                        <th class="font-normal py-2">ประเภท</th>
+                                        <th class="font-normal py-2">ชื่อ-นามสกุล</th>
+                                        <th class="font-normal py-2">รูป</th>
+                                        <th class="font-normal py-2">รูปภาพต้นฉบับ</th>
+                                        <th class="font-normal py-2">ความแม่นยำ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_fr" class="text-white">
+                                    <tr class="text-center">
+                                        <td class="py-7">Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                        <td>Smart Pole</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./widget/datetime.js"></script>
+        <script src="./api.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>

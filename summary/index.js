@@ -68,9 +68,17 @@ function ShowAlert(data) {
 
   newimg.className = "alertevt1 absolute text-[#35C8EE] bottom-[8%] left-[20%]";
   newimg.innerHTML = `${
-    data.event.type == "Face recognized"
-      ? `<img src="./assets/image/alert-face.gif" alt="" class="max-w-[80px] ">`
-      : `<img src="./assets/image/alert-gun.gif" alt="" class="max-w-[80px] ">`
+    data.event.type === "Face recognized"
+      ? `<img src="./assets/image/alert-face.gif" alt="" class="max-w-[80px]">`
+      : data.event.type === "Fight"
+      ? `<img src="./assets/image/alert-fight.gif" alt="" class="max-w-[80px]">`
+      : data.event.type === "Slip"
+      ? `<img src="./assets/image/alert-slip.gif" alt="" class="max-w-[80px]">`
+      : data.event.type === "Gun"
+      ? `<img src="./assets/image/alert-slip.gif" alt="" class="max-w-[80px]">`
+      : data.event.type === "Abandoned object"
+      ? `<img src="./assets/image/alert-dorbox.gif" alt="" class="max-w-[80px]">`
+      : `<img src="./assets/image/alert-face.gif" alt="" class="max-w-[80px]">`
   }`;
 
   newAlert.className =
@@ -153,7 +161,7 @@ function renderEvt(data) {
   for (let i = 0; i < 3 && i < reversedData.length; i++) {
     tbody_fr.innerHTML += `
       <tr class="text-center">
-          <td class="py-7">${reversedData[i].timestamp}</td>
+          <td class="py-7">${convertISOToDateTime(reversedData[i].timestamp)}</td>
           <td>${reversedData[i].camera_name || ""}</td>
           <td>${reversedData[i].location || ""}</td>
           <td>${reversedData[i].event_type?.name_th || ""}</td>
@@ -186,7 +194,7 @@ function renderEvtSocket(data) {
   let cell6 = newRow.insertCell(5);
 
   // กำหนดค่าของแต่ละเซลล์ในแถวใหม่
-  cell1.innerHTML = data.timestamp || "";
+  cell1.innerHTML = convertISOToDateTime(data.timestamp) || "";
   cell1.classList.add("py-7");
   cell2.innerHTML = data.camera_name || "";
   cell3.innerHTML = data.location || "";
@@ -213,6 +221,20 @@ function connectSocket() {
       renderEvtSocket(jsonData.message);
     }
   };
+}
+
+function convertISOToDateTime(isoDateTime) {
+  let dateTimeString = isoDateTime.replace("T", " ").replace("Z", "");
+
+  let dateTime = new Date(dateTimeString);
+  let year = dateTime.getFullYear();
+  let month = ("0" + (dateTime.getMonth() + 1)).slice(-2); 
+  let day = ("0" + dateTime.getDate()).slice(-2);
+  let hours = ("0" + dateTime.getHours()).slice(-2);
+  let minutes = ("0" + dateTime.getMinutes()).slice(-2);
+  let seconds = ("0" + dateTime.getSeconds()).slice(-2);
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 async function initialize() {

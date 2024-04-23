@@ -9,7 +9,14 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600&display=swap"
             rel="stylesheet">
+        
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <script src="https://cdn.tailwindcss.com?line-clamp"></script>
+        <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.5/js/dataTables.tailwindcss.js"></script>
+        <link rel="stylesheet"
+            href="https://cdn.datatables.net/2.0.5/css/dataTables.tailwindcss.css">
+
     </head>
     <body>
         <div class="absolute top-0 inset-x-0">
@@ -48,6 +55,9 @@
             </div>
         </div>
 
+        <!-- blur -->
+        <div class="blur hidden h-full w-full z-40 fixed top-0 left-0 bg-[#000000b3]"></div>
+
         <div class="pt-[90px] xl:pt-[106px]">
             <div class="mt-2 mx-5 h-[86dvh] grid grid-cols-1 gap-4">
                 <div
@@ -57,7 +67,7 @@
                         <div class="pl-6 pr-1 flex justify-between">
                             <span class="text-[#35C8EE]">รายการแจ้งเตือน</span>
                         </div>
-                        <div class="overflow-auto max-h-[30vh] pt-5">
+                        <div class="display_table px-3 pt-5">
                             <table id="create_table"
                                 class="w-full border-collapse">
                                 <thead
@@ -74,14 +84,14 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_fr" class="text-white">
-                                    <tr class="text-center">
+                                    <!-- <tr class="text-center">
                                         <td class="py-7">Smart Pole</td>
                                         <td>Smart Pole</td>
                                         <td>Smart Pole</td>
                                         <td>Smart Pole</td>
                                         <td>Smart Pole</td>
                                         <td>Smart Pole</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

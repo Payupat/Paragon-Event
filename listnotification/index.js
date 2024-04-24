@@ -25,13 +25,17 @@ function InitDailyTable(eventData) {
       eventData[i].description?.name || "",
       "<a target='_blank' href='./viewer/?imgurl=" +
         eventData[i].image.thumbnail +
-        "&topic="+eventData[i].event_type.name_th+"'><img src='" +
+        "&topic=" +
+        eventData[i].event_type.name_th +
+        "'><img src='" +
         eventData[i].image.thumbnail +
         "' width=80 height=80 /></a>",
       eventData[i].image.image_compare !== null
         ? "<a target='_blank' href='./viewer/?imgurl=" +
           eventData[i].image.image_compare +
-          "&topic="+eventData[i].event_type.name_th+"'><img src='" +
+          "&topic=" +
+          eventData[i].event_type.name_th +
+          "'><img src='" +
           eventData[i].image.image_compare +
           "' width=80 height=80 /></a>"
         : "",
@@ -51,9 +55,9 @@ function InitDailyTable(eventData) {
       emptyTable: "ไม่มีข้อมูล",
     },
     buttons: [
-        {
-            extend: "excel",
-        },
+      {
+        extend: "excel",
+      },
     ],
   });
 
@@ -80,6 +84,13 @@ function InitDailyTable(eventData) {
 
   dt_search.style.color = "#35C8EE";
   dt_info.style.color = "#35C8EE";
+
+  document.querySelector(".csv").style.display = "block";
+
+  // const creatButton = document.createElement("div")
+  // creatButton.className = `px-4 bg-white w-20 text-center`
+  // creatButton.innerHTML = `<p>CSV</p>`
+  // dt_search.appendChild(creatButton);
 }
 
 function ShowAlert(data) {
@@ -192,18 +203,181 @@ function connectSocket() {
   };
 }
 
+function convertToExcel() {
+  // สร้าง workbook และ worksheet
+  var workbook = new ExcelJS.Workbook();
+  var worksheet = workbook.addWorksheet("Data");
+
+  // เรียกใช้ข้อมูลจาก DataTable
+  var data = tableDaily.data().toArray();
+
+  const columnHeaders = [
+    { header: "เวลา", key: "เวลา", width: 20 },
+    { header: "กล้อง", key: "กล้อง", width: 20 },
+    { header: "สถานที่", key: "สถานที่", width: 20 },
+    { header: "ประเภท", key: "ประเภท", width: 25 },
+    { header: "ชื่อ-นามสกุล", key: "ชื่อ-นามสกุล", width: 25 },
+    { header: "รูป", key: "รูป", width: 80 },
+    { header: "รูปภาพต้นฉบับ", key: "รูปภาพต้นฉบับ", width: 80 },
+    { header: "ความแม่นยำ", key: "ความแม่นยำ", width: 25 },
+  ];
+
+  // เพิ่มหัวข้อคอลัมน์
+  worksheet.columns = columnHeaders.map((header) => ({
+    header: header.header,
+    key: header.key,
+    width: header.width,
+  }));
+
+  // เพิ่มข้อมูลลงใน worksheet
+  data.forEach((row) => {
+    var parser = new DOMParser();
+
+    var htmlDoc5 = parser.parseFromString(row[5], "text/html");
+    var imgSrc5 = htmlDoc5.querySelector("img").src;
+    row[5] = imgSrc5;
+
+    var htmlDoc6 = parser.parseFromString(row[6], "text/html");
+    // ดึง URL ของรูปภาพจากแท็ก img สำหรับ array ที่ 6
+    var imgElement6 = htmlDoc6.querySelector("img");
+    var imgSrc6 = imgElement6 ? imgElement6.src : null;
+
+    row[6] = imgSrc6 || "";
+
+    // worksheet.addRow(row);
+    var rowAdded = worksheet.addRow(row);
+
+    // กำหนด underline สำหรับเซลล์ในคอลัมน์ที่ 5 และ 6
+    if (rowAdded.getCell(6).value) {
+      rowAdded.getCell(6).font = { underline: true };
+    }
+
+    if (rowAdded.getCell(7).value) {
+      rowAdded.getCell(7).font = { underline: true };
+    }
+  });
+
+  // สร้างไฟล์ Excel
+  workbook.xlsx.writeBuffer().then(function (buffer) {
+    // สร้าง Blob จาก buffer
+    var blob = new Blob([buffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    // สร้าง URL สำหรับ Blob
+    var url = window.URL.createObjectURL(blob);
+
+    // สร้าง element a สำหรับดาวน์โหลดไฟล์ Excel
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "report_event.xlsx";
+    document.body.appendChild(a);
+
+    // คลิกที่ element a เพื่อดาวน์โหลดไฟล์ Excel
+    a.click();
+
+    // ลบ element a ที่สร้างขึ้น
+    document.body.removeChild(a);
+
+    // ล้าง URL ที่สร้างขึ้น
+    window.URL.revokeObjectURL(url);
+  });
+}
+
+// function convertToExcel() {
+//   // สร้าง workbook และ worksheet
+//   var workbook = new ExcelJS.Workbook();
+//   var worksheet = workbook.addWorksheet("Data");
+
+//   // เรียกใช้ข้อมูลจาก DataTable
+//   var data = tableDaily.data().toArray();
+
+//   const columnHeaders = [
+//     { header: "เวลา", key: "เวลา", width: 20 },
+//     { header: "กล้อง", key: "กล้อง", width: 20 },
+//     { header: "สถานที่", key: "สถานที่", width: 20 },
+//     { header: "ประเภท", key: "ประเภท", width: 25 },
+//     { header: "ชื่อ-นามสกุล", key: "ชื่อ-นามสกุล", width: 25 },
+//     { header: "รูป", key: "รูป", width: 50 },
+//     { header: "รูปภาพต้นฉบับ", key: "รูปภาพต้นฉบับ", width: 50 },
+//     { header: "ความแม่นยำ", key: "ความแม่นยำ", width: 25 },
+//   ];
+
+//   // เพิ่มหัวข้อคอลัมน์
+//   worksheet.columns = columnHeaders.map((header) => ({
+//     header: header.header,
+//     key: header.key,
+//     width: header.width,
+//   }));
+
+//   // เพิ่มข้อมูลลงใน worksheet
+//   data.forEach(async (row) => {
+//     var parser = new DOMParser();
+
+//     var htmlDoc5 = parser.parseFromString(row[5], "text/html");
+//     var imgSrc5 = htmlDoc5.querySelector("img").src;
+
+//     // โหลดรูปภาพและแปลงเป็น base64
+//     try {
+//       const response = await fetch(imgSrc5);
+//       const blob = await response.blob();
+//       const reader = new FileReader();
+//       reader.readAsDataURL(blob);
+//       reader.onloadend = function () {
+//         row[5] = reader.result.split(",")[1]; // เก็บ base64 ลงในข้อมูล
+//         worksheet.addRow(row);
+//       };
+//       row[5] = imgSrc5
+//     } catch (error) {
+//       console.error("Error loading image:", error);
+//     }
+
+//     var htmlDoc6 = parser.parseFromString(row[6], "text/html");
+//     var imgElement6 = htmlDoc6.querySelector("img");
+//     var imgSrc6 = imgElement6 ? imgElement6.src : null;
+
+//     row[6] = imgSrc6 || "";
+
+//     worksheet.addRow(row);
+//   });
+
+//   // สร้างไฟล์ Excel
+//   workbook.xlsx.writeBuffer().then(function (buffer) {
+//     // สร้าง Blob จาก buffer
+//     var blob = new Blob([buffer], {
+//       type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+//     });
+
+//     // สร้าง URL สำหรับ Blob
+//     var url = window.URL.createObjectURL(blob);
+
+//     // สร้าง element a สำหรับดาวน์โหลดไฟล์ Excel
+//     var a = document.createElement("a");
+//     a.href = url;
+//     a.download = "report_event.xlsx";
+//     document.body.appendChild(a);
+
+//     // คลิกที่ element a เพื่อดาวน์โหลดไฟล์ Excel
+//     a.click();
+
+//     // ลบ element a ที่สร้างขึ้น
+//     document.body.removeChild(a);
+
+//     // ล้าง URL ที่สร้างขึ้น
+//     window.URL.revokeObjectURL(url);
+//   });
+// }
 
 async function initialize() {
   try {
-    
     const evtdata = await getEvent();
     InitDailyTable(evtdata);
 
     connectSocket();
 
-    setInterval(function() {
-      console.log(tableDaily.data());
-  }, 30000);
+    //   setInterval(function() {
+    //     console.log(tableDaily.data());
+    // }, 30000);
   } catch (error) {}
 }
 window.addEventListener("load", initialize);

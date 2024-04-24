@@ -17,6 +17,8 @@
         <link rel="stylesheet"
             href="https://cdn.datatables.net/2.0.5/css/dataTables.tailwindcss.css">
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+
         <!-- <script src="
         https://cdn.jsdelivr.net/npm/csvtojson@2.0.10/browser/browser.min.js
         "></script>
@@ -75,7 +77,10 @@
                         <div class="pl-6 pr-1 flex justify-between">
                             <span class="text-[#35C8EE]">รายการแจ้งเตือน</span>
                         </div>
-                        <div class="display_table px-3 pt-5">
+                        <div class="display_table px-3 pt-5 relative">
+                            <div onclick="convertToExcel()" class="csv hidden absolute right-2 w-20 py-2 text-center select-none cursor-pointer rounded bg-white hover:bg-gray-200 ">
+                                EXCEL
+                            </div>
                             <table id="create_table"
                                 class="w-full border-collapse">
                                 <thead

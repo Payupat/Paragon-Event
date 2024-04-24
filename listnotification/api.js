@@ -1,7 +1,7 @@
 const city = "planetcomm";
 
 const api = {
-  event: `http://192.168.100.87:8000/alert/event`,
+  event: `http://172.16.100.30:8000/alert/event`,
 };
 
 async function getEvent() {

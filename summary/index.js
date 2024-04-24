@@ -211,7 +211,7 @@ function renderEvtSocket(data) {
 }
 
 function connectSocket() {
-  const exampleSocket = new WebSocket("ws://172.16.100.30:8000/ws/alerts");
+  const exampleSocket = new WebSocket(api.socket);
 
   exampleSocket.onmessage = (event) => {
     const jsonData = JSON.parse(event.data);

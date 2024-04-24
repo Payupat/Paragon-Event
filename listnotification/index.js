@@ -39,7 +39,7 @@ function InitDailyTable(eventData) {
           eventData[i].image.image_compare +
           "' width=80 height=80 /></a>"
         : "",
-      eventData[i].accuracy !== null ? eventData[i].accuracy + " %" : "0 %",
+      eventData[i].accuracy !== null ? eventData[i].accuracy + " %" : "",
     ]);
   }
 
@@ -186,14 +186,14 @@ function renderEvtSocket(data) {
     data.image_compare !== null
       ? `<a target='_blank' href='./viewer/?imgurl=${data.image_compare}&topic=${data.event.name_th}'><img src='${data.image_compare}' width=80 height=80 /></a>`
       : "",
-    data.accuracy !== null ? `${data.accuracy} %` : "0 %",
+    data.accuracy !== null ? `${data.accuracy} %` : "",
   ];
 
   tableDaily.row.add(newRowData).draw();
 }
 
 function connectSocket() {
-  const exampleSocket = new WebSocket("ws://192.168.100.87:8000/ws/alerts");
+  const exampleSocket = new WebSocket(api.socket);
 
   exampleSocket.onmessage = (event) => {
     const jsonData = JSON.parse(event.data);

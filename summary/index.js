@@ -7,8 +7,12 @@ function renderVideo(data) {
   var videoContainer = document.getElementById("video");
   var players = [];
 
-  for (var i = 0; i < data.length; i++) {
+  const maxVideos = 2;
+
+  for (var i = 0; i < Math.min(data.length, maxVideos); i++) {
     // const uuid = data[i].lastTelemetry.uuid;
+    console.log(data[i]);
+    
 
     var divElement = document.createElement("div");
     divElement.className = "video-container";
@@ -64,7 +68,7 @@ function ShowAlert(data) {
 
   overlay.style.display = "block";
 
-  newimg.className = "alertevt1 absolute text-[#35C8EE] bottom-[8%] left-[20%]";
+  newimg.className = "alertevt1 absolute text-[#35C8EE] top-[28%] left-[26%]";
   newimg.innerHTML = `${
     data.event.type === "Face recognized"
       ? `<img src="./assets/image/alert-face.gif" alt="" class="max-w-[80px]">`
@@ -149,6 +153,44 @@ function ShowAlert(data) {
   });
 }
 
+function ShowVIP(data) {
+  
+  // "พายุพัฒน์ "
+  // description.name = "พายุพัฒน์ "
+  // ฉัตรขวัญ 
+
+  // vip_kwan.png
+  var newVip = document.createElement("div");
+  newVip.id = "vipElement"
+  newVip.className = "absolute inset-0 flex items-center justify-center z-[100] "
+
+  let imageSrc;
+  if (data.description.name === "พายุพัฒน์ ") {
+    imageSrc = "./assets/image/vip_aomsin.png";
+  } else if (data.description.name === "ฉัตรขวัญ ") {
+    imageSrc = "./assets/image/vip_kwan.png";
+  } 
+
+
+  newVip.innerHTML = `
+    <div class="w-[74%] relative">
+      <img src="./assets/image/bg1.png" alt="">
+      <div class="absolute z-50 top-0 right-0 m-2 cursor-pointer">
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="closeBtn">Close</button>
+        </div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+          <img src=${imageSrc} alt="">
+      </div>
+    </div>
+  `
+
+  document.body.appendChild(newVip);
+
+  document.getElementById("closeBtn").addEventListener("click", function() {
+    newVip.remove(); // Remove the newVip element when the button is clicked
+  });
+}
+
 function renderEvt(data) {
   let reversedData = data.slice();
   reversedData.reverse();
@@ -156,7 +198,10 @@ function renderEvt(data) {
   let tbody_fr = document.getElementById("tbody_fr");
   tbody_fr.innerHTML = "";
 
-  for (let i = 0; i < 3 && i < reversedData.length; i++) {
+  console.log(reversedData);
+  
+
+  for (let i = 0; i < 5 && i < reversedData.length; i++) {
     tbody_fr.innerHTML += `
       <tr class="text-center">
           <td class="py-7">${convertISOToDateTime(reversedData[i].timestamp)}</td>
@@ -216,7 +261,18 @@ function connectSocket() {
   exampleSocket.onmessage = (event) => {
     const jsonData = JSON.parse(event.data);
     if (jsonData.message != "Conncet Success ") {
-      renderEvtSocket(jsonData.message);
+      if(jsonData.message.event.name_en === "VIP1"){
+        ShowVIP(jsonData.message)
+
+        setTimeout(() => {
+          const vipElement = document.getElementById("vipElement");
+          if (vipElement) {
+            vipElement.remove();
+          }
+        }, 15000);
+      }else{
+        renderEvtSocket(jsonData.message);
+      }
     }
   };
 }
@@ -243,9 +299,11 @@ async function initialize() {
     // const data = await getStreaming();
     // const filterCamera4 = data.filter((d) => d.pointId == 7);
     const evtStreaming = await getStreaming();
+    
     renderVideo(evtStreaming);
 
     const evtdata = await getEvent();
+    
     renderEvt(evtdata);
   } catch (error) {}
 }

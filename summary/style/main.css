@@ -15,3 +15,10 @@ tbody tr:nth-child(even) {
   background-color: #131731;
 }
 
+.scale-0 {
+  transform: scale(0);
+}
+
+.scale-100 {
+  transform: scale(1);
+}

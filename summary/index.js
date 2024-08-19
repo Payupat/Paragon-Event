@@ -169,7 +169,9 @@ function ShowVIP(data) {
     imageSrc = "./assets/image/vip_aomsin.png";
   } else if (data.description.name === "ฉัตรขวัญ ") {
     imageSrc = "./assets/image/vip_kwan.png";
-  } 
+  }  else if(data.description.name === "พันเอกสรรพชัย หุวะนันทน์") {
+    imageSrc = "./assets/image/vip_nawa.png"
+  }
 
 
   newVip.innerHTML = `
